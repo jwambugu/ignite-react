@@ -9,9 +9,3 @@ export const getDate = (yearsDiff) => {
 
   return date;
 };
-
-const currentDate = getDate(0);
-const lastYear = getDate(-1);
-const nextYear = getDate(1);
-
-console.log(currentDate, lastYear, nextYear);

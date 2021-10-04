@@ -1,8 +1,14 @@
-import { popularGamesURL } from "./api";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loadPopularGames } from "./store/actions/gameActions";
 
 function App() {
-  console.log(import.meta.env.VITE_RWAG_API_KEY);
-  console.log(popularGamesURL());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPopularGames());
+  });
+
   return (
     <div className="App">
       <h1>Hello</h1>
