@@ -9,5 +9,3 @@ const nextYear = getDate(1);
 const popular_games_path = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
 
 export const popularGamesURL = () => `${base_url}/${popular_games_path}`;
-
-console.log(popularGamesURL());
