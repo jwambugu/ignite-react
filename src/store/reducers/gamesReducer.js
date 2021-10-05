@@ -9,12 +9,14 @@ const gamesReducer = (state = initState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "FETCH_POPULAR_GAMES":
-      const { popularGames } = payload;
+    case "FETCH_GAMES":
+      const { popularGames, upcomingGames, newGames } = payload;
 
       return {
         ...state,
         popularGames,
+        upcomingGames,
+        newGames,
       };
     default:
       return { ...state };
