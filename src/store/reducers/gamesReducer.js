@@ -1,11 +1,11 @@
-const initState = {
+const initialState = {
   popularGames: [],
   newGames: [],
   upcomingGames: [],
   searchedGames: [],
 };
 
-const gamesReducer = (state = initState, action) => {
+const gamesReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
