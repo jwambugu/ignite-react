@@ -17,6 +17,12 @@ const Home = () => {
     dispatch(loadGames());
   }, [dispatch]);
 
+  useEffect(() => {
+    pathname === "/"
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
+  }, [pathname]);
+
   const { popularGames, upcomingGames, newGames } = useSelector(
     (state) => state.games
   );
