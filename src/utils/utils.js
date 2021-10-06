@@ -9,3 +9,9 @@ export const getDate = (yearsDiff) => {
 
   return date;
 };
+
+export const resizeImage = (url, size) => {
+  return url.match(/media\/(screenshots|games)/)
+    ? url.replace("/media/", `/media/resize/${size}/-/`)
+    : url;
+};
