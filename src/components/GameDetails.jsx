@@ -16,15 +16,15 @@ const GameDetails = () => {
               <h3>{name}</h3>
               <p>Ratings: {rating}</p>
             </div>
-            <div className="info">
+
+            <Info>
               <h3>Platforms</h3>
-              <div className="platforms">
-                {platforms &&
-                  platforms.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
-                  ))}
-              </div>
-            </div>
+              <Platforms>
+                {platforms?.map((data) => (
+                  <h4 key={data.platform.id}>{data.platform.name}</h4>
+                ))}
+              </Platforms>
+            </Info>
           </Stats>
 
           <Media>
@@ -34,10 +34,9 @@ const GameDetails = () => {
           <Description>{description_raw}</Description>
 
           <div className="gallery">
-            {screenshots &&
-              screenshots.map((screenShot) => (
-                <img key={screenShot.id} src={screenShot.image} alt={name} />
-              ))}
+            {screenshots?.map((screenShot) => (
+              <img key={screenShot.id} src={screenShot.image} alt={name} />
+            ))}
           </div>
         </Details>
       </CardShadow>
@@ -98,6 +97,7 @@ const Stats = styled(motion.div)`
 const Info = styled(motion.div)`
   text-align: center;
 `;
+
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
@@ -116,7 +116,7 @@ const Media = styled(motion.div)`
 `;
 
 const Description = styled(motion.div)`
-  margin: 5rem 0rem;
+  margin: 5rem 0;
 `;
 
 export default GameDetails;
