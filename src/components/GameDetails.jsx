@@ -2,45 +2,57 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
 const GameDetails = () => {
-  const { game, screenshots } = useSelector((state) => state.gameDetails);
+  const history = useHistory();
+
+  const { game, screenshots, isLoading } = useSelector(
+    (state) => state.gameDetails
+  );
+
   const { name, rating, platforms, background_image, description_raw } = game;
 
+  const exitGameDetailsHandler = () => {
+    history.push("/");
+  };
+
   return (
-    <div>
-      <CardShadow className="shadow">
-        <Details>
-          <Stats>
-            <div className="ratings">
-              <h3>{name}</h3>
-              <p>Ratings: {rating}</p>
+    <>
+      {!isLoading && (
+        <CardShadow className="shadow" onClick={exitGameDetailsHandler}>
+          <Details>
+            <Stats>
+              <div className="ratings">
+                <h3>{name}</h3>
+                <p>Ratings: {rating}</p>
+              </div>
+
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {platforms?.map((data) => (
+                    <h4 key={data.platform.id}>{data.platform.name}</h4>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+
+            <Media>
+              <img src={background_image} alt={name} />
+            </Media>
+
+            <Description>{description_raw}</Description>
+
+            <div className="gallery">
+              {screenshots?.map((screenShot) => (
+                <img key={screenShot.id} src={screenShot.image} alt={name} />
+              ))}
             </div>
-
-            <Info>
-              <h3>Platforms</h3>
-              <Platforms>
-                {platforms?.map((data) => (
-                  <h4 key={data.platform.id}>{data.platform.name}</h4>
-                ))}
-              </Platforms>
-            </Info>
-          </Stats>
-
-          <Media>
-            <img src={background_image} alt={name} />
-          </Media>
-
-          <Description>{description_raw}</Description>
-
-          <div className="gallery">
-            {screenshots?.map((screenShot) => (
-              <img key={screenShot.id} src={screenShot.image} alt={name} />
-            ))}
-          </div>
-        </Details>
-      </CardShadow>
-    </div>
+          </Details>
+        </CardShadow>
+      )}
+    </>
   );
 };
 
@@ -63,7 +75,7 @@ const CardShadow = styled(motion.div)`
   }
 
   &::-webkit-scrollbar-track {
-    background: white;
+    background: #ffffff;
   }
 `;
 
